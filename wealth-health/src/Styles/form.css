@@ -1,0 +1,98 @@
+/*del number input arrows*/
+    /* Firefox */
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
+    /* Chrome */
+input::-webkit-inner-spin-button,
+input::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin:0;
+}
+
+.form-section{
+    width: 1200px;
+    height: 1000px;
+    background-color:#F4F2EE;
+    margin:auto;
+}
+
+.form-section h1 {
+    text-align: center;
+    padding-top: 20px;
+    font-size: 36px;
+}
+
+.personnal-informations{
+    width: 1100px;
+    margin: 40px auto;
+}
+
+
+.informations{
+    display: flex;
+    justify-content: space-between;
+}
+
+.informations-input{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.name{
+    width: 500px;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.name label{
+    font-size: 20px;
+    color: #5A6F06;
+}
+
+.input{
+    height: 40px;
+    width: 400px;
+    border:1px solid #93AD18;
+    border-radius: 10px;
+    padding-left: 15px;
+}
+
+
+.name input:focus{
+    outline-color: #5A6F06;
+}
+
+.category{
+    text-decoration: underline;
+}
+
+
+.street label{
+    font-size: 20px;
+    color: #5A6F06;
+}
+
+.submit{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    width: 300px;
+    height: 50px;
+    margin: auto;
+    border: 1px;
+    box-shadow: 2px 2px #5A6F06;
+    border-radius: 10px;
+    background-color: #93AD18;
+    font-size: 20px;
+}
+
+.submit:hover{
+    background-color: #5A6F06;
+    color: white;
+    box-shadow: 0 0 ;
+}
+
