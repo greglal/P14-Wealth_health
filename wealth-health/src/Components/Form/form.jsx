@@ -3,7 +3,10 @@ import DatePicker from "react-datepicker";
 import dayjs from 'dayjs'
 import 'react-datepicker/dist/react-datepicker.css';
 import States from '../../Data/States.json';
-import {useState} from 'react';
+import {
+    useEffect,
+    useState
+} from 'react';
 import Departments from '../../Data/Departments.json';
 import {useDispatch} from 'react-redux';
 import {addEmployee} from '../../Redux/Reducers/employeesReducer';
@@ -22,9 +25,17 @@ export default function Form () {
     const [street, setStreet] = useState("");
     const [city, setCity] = useState("");
     const [zip, setZip] = useState("");
-    // const [modalReset, setModalReset] = useState(false);
     const [displayModal, setDisplayModal] = useState(false);
 
+    //default state and department
+    useEffect(() => {
+        if (!selectedState && States.length > 0) {
+            setSelectedState(States[0].abbreviation);
+        }
+        if (!selectedDepartment && Departments.length > 0) {
+            setSelectedDepartment(Departments[0].name)
+        }
+    }, [selectedState, selectedDepartment]);
 
     /**
      * for changes in  state's select input
@@ -48,41 +59,63 @@ export default function Form () {
      * submit form
      */
     const handleSubmit = () => {
-        dispatch(
-            addEmployee({
-                id: ((1+Math.random())* 0x10000).toString(16).substring(1), // to get a unique id
-                firstName,
-                lastName,
-                dateOfBirth: dateOfBirth ? dayjs(dateOfBirth).format('MM/DD/YYYY') : null,
-                startDate: startDate ? dayjs(startDate).format('MM/DD/YYYY') : null,
-                street,
-                city,
-                zip,
-                state: selectedState,
-                department: selectedDepartment,
-            })
-        );
+        if (validateForm()) {
+            dispatch(
+                addEmployee({
+                    id: ((1 +
+                            Math.random()) *
+                        0x10000).toString(16)
+                        .substring(1), // to get a unique id
+                    firstName,
+                    lastName,
+                    dateOfBirth: dateOfBirth ?
+                        dayjs(dateOfBirth)
+                            .format('MM/DD/YYYY') :
+                        null,
+                    startDate: startDate ?
+                        dayjs(startDate)
+                            .format('MM/DD/YYYY') :
+                        null,
+                    street,
+                    city,
+                    zip,
+                    state: selectedState,
+                    department: selectedDepartment,
+                })
+            );
 
-        setDisplayModal(true);
+            setDisplayModal(true);
 
-        // clear form fields
-        setFirstName("");
-        setLastName("");
-        setDateOfBirth(null);
-        setStartDate(null);
-        setStreet("");
-        setCity("");
-        setZip("");
-        setSelectedState("");
-        setSelectedDepartment("");
+            // clear form fields
+            setFirstName("");
+            setLastName("");
+            setDateOfBirth(null);
+            setStartDate(null);
+            setStreet("");
+            setCity("");
+            setZip("");
+            setSelectedState("");
+            setSelectedDepartment("");
 
 
-        // Fetch the latest state of employees from Redux store
-        const latestEmployeesState = store.getState().employees;
+            // Fetch the latest state of employees from Redux store
+            const latestEmployeesState = store.getState().employees;
 
-        // Log the last added employee (assuming it's the latest one in the array)
-        const lastAddedEmployee = latestEmployeesState.employees[latestEmployeesState.employees.length - 1];
-        console.log("Employee created:", lastAddedEmployee);
+            // Log the last added employee (assuming it's the latest one in the array)
+            const lastAddedEmployee = latestEmployeesState.employees[latestEmployeesState.employees.length -
+            1];
+            console.log("Employee created:",
+                lastAddedEmployee);
+        }
+    }
+
+    const validateForm = () => {
+        if (!firstName || !lastName || !dateOfBirth || !startDate || !street || !city || !zip || !selectedState || !selectedDepartment) {
+            // if an input is empty so display error msg
+            alert("Veuillez remplir tous les champs du formulaire.");
+            return false;
+        }
+        return true;
     }
 
     return (
