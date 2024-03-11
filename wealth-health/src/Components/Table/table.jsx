@@ -3,7 +3,12 @@ import { useSelector } from 'react-redux';
 import '../../Styles/table.css';
 import {useState} from "react";
 
-
+/**
+ * table with all employees information
+ *
+ * @returns {JSX.Element}
+ * @constructor
+ */
 export default function Table () {
     const employees = useSelector(state => state.employees.employees)
     const data = employees.length > 0 ? employees : [{ firstName: '', lastName: '', startDate: '', department: '', dateOfBirth: '', street: '', city: '', state: '', zip: '' }];

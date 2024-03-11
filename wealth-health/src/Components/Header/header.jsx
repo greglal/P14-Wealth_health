@@ -4,6 +4,12 @@ import  logo from '../../Assets/logo.jpg'
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import  {faUserPlus, faListUl} from "@fortawesome/free-solid-svg-icons";
 
+/**
+ * header with logo and links to create page and table page
+ *
+ * @returns {JSX.Element}
+ * @constructor
+ */
 export default function Header () {
     return (
         <div className="header">

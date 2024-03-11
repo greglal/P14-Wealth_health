@@ -13,6 +13,12 @@ import {addEmployee} from '../../Redux/Reducers/employeesReducer';
 import {store} from '../../Redux/store';
 import {Modal} from 'modal-react-greg-lal-p14';
 
+/**
+ * create employee form
+ *
+ * @returns {JSX.Element}
+ * @constructor
+ */
 export default function Form () {
     const dispatch = useDispatch();
     const [selectedState,setSelectedState] = useState('');
