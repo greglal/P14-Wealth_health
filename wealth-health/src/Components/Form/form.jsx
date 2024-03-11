@@ -11,7 +11,6 @@ import Departments from '../../Data/Departments.json';
 import {useDispatch} from 'react-redux';
 import {addEmployee} from '../../Redux/Reducers/employeesReducer';
 import {store} from '../../Redux/store';
-// import Modal from '../../Components/Modal/modal';
 import {Modal} from 'modal-react-greg-lal-p14';
 
 export default function Form () {
