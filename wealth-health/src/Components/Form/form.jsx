@@ -67,20 +67,11 @@ export default function Form () {
         if (validateForm()) {
             dispatch(
                 addEmployee({
-                    id: ((1 +
-                            Math.random()) *
-                        0x10000).toString(16)
-                        .substring(1), // to get a unique id
+                    id: ((1 + Math.random()) * 0x10000).toString(16).substring(1), // to get a unique id
                     firstName,
                     lastName,
-                    dateOfBirth: dateOfBirth ?
-                        dayjs(dateOfBirth)
-                            .format('MM/DD/YYYY') :
-                        null,
-                    startDate: startDate ?
-                        dayjs(startDate)
-                            .format('MM/DD/YYYY') :
-                        null,
+                    dateOfBirth: dateOfBirth ? dayjs(dateOfBirth).format('MM/DD/YYYY') : null,
+                    startDate: startDate ? dayjs(startDate).format('MM/DD/YYYY') : null,
                     street,
                     city,
                     zip,
@@ -107,10 +98,8 @@ export default function Form () {
             const latestEmployeesState = store.getState().employees;
 
             // Log the last added employee (assuming it's the latest one in the array)
-            const lastAddedEmployee = latestEmployeesState.employees[latestEmployeesState.employees.length -
-            1];
-            console.log("Employee created:",
-                lastAddedEmployee);
+            const lastAddedEmployee = latestEmployeesState.employees[latestEmployeesState.employees.length - 1];
+            console.log("Employee created:", lastAddedEmployee);
         }
     }
 

@@ -4,6 +4,11 @@ const initialState = {
     employees: [],
 }
 
+/**
+ * reducer
+ *
+ * @type {Slice<{employees: *[]}, {deleteEmployee: reducers.deleteEmployee, addEmployee: reducers.addEmployee}, string, string, SliceSelectors<{employees: *[]}>>}
+ */
 export const employeesSlice = createSlice({
     name: "employees",
     initialState,
